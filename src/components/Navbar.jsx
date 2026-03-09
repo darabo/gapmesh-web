@@ -69,25 +69,25 @@ export default function Navbar() {
     // When 'scrolled' is true, it gets a background color, blur effect, and a shadow.
     <nav 
       ref={navRef}
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between px-6 py-3 rounded-full transition-all duration-500 w-[90%] max-w-4xl
+      className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between min-h-[52px] px-3 py-2 sm:px-6 sm:py-3 rounded-2xl sm:rounded-full transition-all duration-300 w-[94%] max-w-4xl top-[max(0.5rem,env(safe-area-inset-top))]
         ${scrolled 
-          ? 'bg-background-light/60 dark:bg-background-dark/60 backdrop-blur-xl border border-primary-light/10 dark:border-primary-dark/50 shadow-lg' 
-          : 'bg-transparent border-transparent'
+          ? 'bg-background-light/90 dark:bg-background-dark/90 supports-[backdrop-filter:blur(1px)]:backdrop-blur-xl border border-primary-light/10 dark:border-primary-dark/50 shadow-lg'
+          : 'bg-background-light/75 dark:bg-background-dark/75 supports-[backdrop-filter:blur(1px)]:backdrop-blur-md border border-transparent'
         }
       `}
     >
       {/* Brand logo and name - clicking it scrolls to the very top */}
       <button
         type="button"
-        className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer flex items-center gap-3"
+        className="font-sans font-bold text-base sm:text-xl tracking-tight link-hover cursor-pointer flex items-center gap-2 sm:gap-3 min-w-0"
         onClick={() => window.scrollTo(0,0)}
         aria-label="Back to top"
       >
         <picture>
           <source srcSet="/gapmesh-icon.webp" type="image/webp" />
-          <img src="/gapmesh-icon-128.png" alt="Gap Mesh Logo" width="32" height="32" className="w-8 h-8 rounded-[8px] shadow-sm" />
+          <img src="/gapmesh-icon-128.png" alt="Gap Mesh Logo" width="32" height="32" className="w-7 h-7 sm:w-8 sm:h-8 rounded-[8px] shadow-sm" />
         </picture>
-        Gap Mesh
+        <span className="truncate">Gap Mesh</span>
       </button>
 
       {/* Navigation links (hidden on mobile devices using 'hidden md:flex') */}
@@ -97,12 +97,12 @@ export default function Navbar() {
         <Link to="/privacy" onClick={() => window.scrollTo(0, 0)} className="hover:text-accent transition-colors link-hover">{t('nav.privacy')}</Link>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-1.5 sm:gap-4">
         {/* Utilities: Theme & language toggle buttons */}
-        <button type="button" onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle theme" aria-pressed={isDark}>
+        <button type="button" onClick={toggleTheme} className="p-1.5 sm:p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle theme" aria-pressed={isDark}>
           {isDark ? <SunIcon /> : <MoonIcon />}
         </button>
-        <button type="button" onClick={toggleLanguage} className="font-mono text-sm font-bold uppercase p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle language">
+        <button type="button" onClick={toggleLanguage} className="font-mono text-xs sm:text-sm font-bold uppercase p-1.5 sm:p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle language">
           {i18n.language === 'en' ? 'FA' : 'EN'}
         </button>
 

@@ -119,8 +119,15 @@ const TypewriterCard = ({ title, desc, liveLabel }) => {
 // This card animates a simulated mouse cursor clicking on a 'Secure' badge using GSAP.
 const CursorCard = ({ title, desc, secureLabel }) => {
   const cursorRef = useRef(null); // Reference to the SVG cursor element
+  const cardRef = useRef(null);
+  const secureBadgeRef = useRef(null);
 
   useEffect(() => {
+    const shouldAnimate = window.innerWidth >= 640 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!shouldAnimate) {
+      return;
+    }
+
     let ctx = gsap.context(() => {
       // Create an infinite repeating timeline for the animation sequence
       const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
@@ -129,23 +136,23 @@ const CursorCard = ({ title, desc, secureLabel }) => {
         .to(cursorRef.current, { opacity: 1, duration: 0.3 }) // Fade in
         .to(cursorRef.current, { x: 60, y: 30, duration: 1, ease: "power2.inOut" }) // Move cursor over badge
         .to(cursorRef.current, { scale: 0.8, duration: 0.1, yoyo: true, repeat: 1 }) // "Click" effect (shrink and grow quickly)
-        .to(".secure-badge", { backgroundColor: "#7B61FF", color: "#fff", duration: 0.3 }, "-=0.1") // Highlight the badge simultaneously with the click
+        .to(secureBadgeRef.current, { backgroundColor: "#7B61FF", color: "#fff", duration: 0.3 }, "-=0.1") // Highlight the badge simultaneously with the click
         .to(cursorRef.current, { x: 120, y: 60, duration: 0.8, ease: "power2.inOut", delay: 0.5 }) // Move cursor away
         .to(cursorRef.current, { opacity: 0, duration: 0.3 }) // Fade out cursor
-        .to(".secure-badge", { backgroundColor: "transparent", color: "inherit", duration: 0.3 }, "+=0.5"); // Reset the badge color
-    });
+        .to(secureBadgeRef.current, { backgroundColor: "transparent", color: "inherit", duration: 0.3 }, "+=0.5"); // Reset the badge color
+    }, cardRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className="bg-white/5 dark:bg-black/20 backdrop-blur-md rounded-[2rem] p-8 border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden group">
+    <div ref={cardRef} className="bg-white/5 dark:bg-black/20 backdrop-blur-md rounded-[2rem] p-8 border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden group">
       <div className="absolute top-6 ltr:right-6 rtl:left-6 text-accent opacity-50"><ShieldCheck size={24} /></div>
       <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4 text-start">{title}</h3>
       <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-6 text-start">{desc}</p>
       
       <div className="bg-black/5 dark:bg-white/5 rounded-xl p-4 h-28 relative flex items-center justify-center border border-black/10 dark:border-white/10">
         {/* The badge targeted by the GSAP timeline (.secure-badge) */}
-        <div className="secure-badge border border-accent/50 text-accent font-mono text-xs px-3 py-1 rounded-full transition-colors">
+        <div ref={secureBadgeRef} className="secure-badge border border-accent/50 text-accent font-mono text-xs px-3 py-1 rounded-full transition-colors">
           {secureLabel}
         </div>
         
