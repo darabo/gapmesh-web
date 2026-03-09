@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -8,19 +8,26 @@ import './index.css'
 // Initialize internationalization (i18n) for language support (English/Farsi)
 import './i18n'
 
-// Import the main pages of the application
-import App from './App.jsx'
-import PrivacyPolicy from './PrivacyPolicy.jsx'
+// Import the main App page statically since it's the primary landing page
+// The App component is already lightweight as it lazy-loads its below-the-fold sections
+import App from './App.jsx';
+
+// Import the PrivacyPolicy page lazily to reduce initial bundle cost (secondary route)
+const PrivacyPolicy = lazy(() => import('./PrivacyPolicy.jsx'));
 
 // Helper function to determine whether to load light or dark mode on initial startup.
 // It first checks local storage for a saved preference.
 // If not found, it checks the user's system preferences (macOS/Windows settings).
 const getInitialTheme = () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    return savedTheme;
+  try {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme;
+    }
+  } catch {
+    // Ignore storage read failures and fallback to system preference.
   }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
 // Apply the determined theme to the document so Tailwind's 'dark:' classes work.
@@ -36,12 +43,14 @@ if (theme === 'dark') {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        {/* The main landing page */}
-        <Route path="/" element={<App />} />
-        {/* The privacy policy page */}
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen w-full bg-background-light dark:bg-background-dark" aria-hidden="true" />}>
+        <Routes>
+          {/* The main landing page */}
+          <Route path="/" element={<App />} />
+          {/* The privacy policy page */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   </StrictMode>,
 )

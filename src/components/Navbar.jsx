@@ -1,11 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next'; // Hook for translations
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Moon, Sun } from 'lucide-react'; // Icons
+import { Link } from 'react-router-dom';
 
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+const SunIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2.5V5M12 19V21.5M4.57 4.57l1.77 1.77M17.66 17.66l1.77 1.77M2.5 12H5M19 12h2.5M4.57 19.43l1.77-1.77M17.66 6.34l1.77-1.77" />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20.35 14.74A8.5 8.5 0 1 1 9.26 3.65 6.5 6.5 0 0 0 20.35 14.74Z" />
+  </svg>
+);
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -22,11 +30,19 @@ export default function Navbar() {
     const root = document.documentElement;
     if (root.classList.contains('dark')) {
       root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      try {
+        localStorage.setItem('theme', 'light');
+      } catch {
+        // Ignore storage write failures.
+      }
       setIsDark(false);
     } else {
       root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      try {
+        localStorage.setItem('theme', 'dark');
+      } catch {
+        // Ignore storage write failures.
+      }
       setIsDark(true);
     }
   };
@@ -35,14 +51,9 @@ export default function Navbar() {
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'fa' : 'en';
     i18n.changeLanguage(newLang); // Update the language used by translation keys
-    // Farsi is written right-to-left, English is left-to-right. Update the document direction.
-    document.documentElement.dir = newLang === 'fa' ? 'rtl' : 'ltr';
   };
 
   useEffect(() => {
-    // Initial dir setup for writing direction on mount
-    document.documentElement.dir = i18n.language === 'fa' ? 'rtl' : 'ltr';
-
     // Hook into the scroll event to change the navbar's appearance when scrolled down
     const handleScroll = () => {
       setScrolled(window.scrollY > 50); // Becomes true if scrolled more than 50px
@@ -51,7 +62,7 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     // Cleanup the event listener when the component unmounts
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [i18n.language]);
+  }, []);
 
   return (
     // The navbar uses fixed positioning to stay at the top of the screen.
@@ -66,24 +77,32 @@ export default function Navbar() {
       `}
     >
       {/* Brand logo and name - clicking it scrolls to the very top */}
-      <div className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer flex items-center gap-3" onClick={() => window.scrollTo(0,0)}>
-        <img src="/gapmesh-icon.png" alt="Gap Mesh Logo" className="w-8 h-8 rounded-[8px] shadow-sm" />
+      <button
+        type="button"
+        className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer flex items-center gap-3"
+        onClick={() => window.scrollTo(0,0)}
+        aria-label="Back to top"
+      >
+        <picture>
+          <source srcSet="/gapmesh-icon.webp" type="image/webp" />
+          <img src="/gapmesh-icon-128.png" alt="Gap Mesh Logo" width="32" height="32" className="w-8 h-8 rounded-[8px] shadow-sm" />
+        </picture>
         Gap Mesh
-      </div>
+      </button>
 
       {/* Navigation links (hidden on mobile devices using 'hidden md:flex') */}
       <div className="hidden md:flex items-center gap-8 font-sans text-sm font-medium">
         <a href="#features" className="hover:text-accent transition-colors link-hover">{t('features.f1_title')}</a>
         <a href="#protocol" className="hover:text-accent transition-colors link-hover">Protocol</a>
-        <a href="/privacy" className="hover:text-accent transition-colors link-hover">{t('nav.privacy')}</a>
+        <Link to="/privacy" onClick={() => window.scrollTo(0, 0)} className="hover:text-accent transition-colors link-hover">{t('nav.privacy')}</Link>
       </div>
 
       <div className="flex items-center gap-4">
         {/* Utilities: Theme & language toggle buttons */}
-        <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
-          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+        <button type="button" onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle theme" aria-pressed={isDark}>
+          {isDark ? <SunIcon /> : <MoonIcon />}
         </button>
-        <button onClick={toggleLanguage} className="font-mono text-sm font-bold uppercase p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+        <button type="button" onClick={toggleLanguage} className="font-mono text-sm font-bold uppercase p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle language">
           {i18n.language === 'en' ? 'FA' : 'EN'}
         </button>
 

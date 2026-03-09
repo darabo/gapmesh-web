@@ -40,12 +40,16 @@ export default function Downloads() {
           <img 
             src="/images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" 
             alt="Download on the App Store" 
+            loading="lazy"
+            decoding="async"
             className="h-full dark:hidden"
           />
           {/* White image is hidden default, shown in dark mode */}
           <img 
             src="/images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" 
             alt="Download on the App Store" 
+            loading="lazy"
+            decoding="async"
             className="h-full hidden dark:block"
           />
         </a>

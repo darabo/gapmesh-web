@@ -1,6 +1,26 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+const getInitialLanguage = () => {
+  if (typeof window === 'undefined') {
+    return 'en';
+  }
+
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en' || saved === 'fa') {
+      return saved;
+    }
+  } catch {
+    // Ignore storage access failures and fallback to browser language.
+  }
+
+  const browserLanguage = navigator.language?.toLowerCase() || 'en';
+  return browserLanguage.startsWith('fa') ? 'fa' : 'en';
+};
+
+const initialLanguage = getInitialLanguage();
+
 // Translations for different languages
 // This object acts like a dictionary mapping keys (like 'nav.home') to their translated text.
 const resources = {
@@ -157,11 +177,31 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources, // the dictionary of translations
-    lng: 'en', // default language set to English
+    lng: initialLanguage, // restore saved language, then fallback to browser language
     fallbackLng: 'en', // default to English if a translation is missing in another language
     interpolation: {
       escapeValue: false // React already escapes values automatically, so this is false
     }
   });
+
+if (typeof document !== 'undefined') {
+  document.documentElement.lang = initialLanguage;
+  document.documentElement.dir = initialLanguage === 'fa' ? 'rtl' : 'ltr';
+}
+
+i18n.on('languageChanged', (lng) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = lng;
+    document.documentElement.dir = lng === 'fa' ? 'rtl' : 'ltr';
+  }
+
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem('lang', lng);
+    } catch {
+      // Ignore storage write failures.
+    }
+  }
+});
 
 export default i18n;
