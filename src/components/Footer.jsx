@@ -14,12 +14,12 @@ export default function Footer() {
         
         {/* Left column: Brand Identity & Contact Info */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3 cursor-pointer link-hover" onClick={() => window.scrollTo(0, 0)}>
+          <button type="button" className="flex items-center gap-3 cursor-pointer link-hover text-left" onClick={() => window.scrollTo(0, 0)} aria-label="Back to top">
             <img src="/gapmesh-icon.png" alt="Gap Mesh Logo" className="w-10 h-10 rounded-[10px] shadow-md" />
             <h2 className="font-sans font-bold text-3xl tracking-tight">
                {t('brand')}
             </h2>
-          </div>
+          </button>
           <p className="font-mono text-white/50 text-sm">
             {t('footer.tagline')}
           </p>

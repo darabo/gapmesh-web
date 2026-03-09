@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
 // Import all the distinct sections (components) that make up the landing page
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Features from './components/Features';
-import Philosophy from './components/Philosophy';
-import Protocol from './components/Protocol';
-import AdvancedFeatures from './components/AdvancedFeatures';
-import Downloads from './components/Downloads';
-import Footer from './components/Footer';
+const Features = lazy(() => import('./components/Features'));
+const Philosophy = lazy(() => import('./components/Philosophy'));
+const Protocol = lazy(() => import('./components/Protocol'));
+const AdvancedFeatures = lazy(() => import('./components/AdvancedFeatures'));
+const Downloads = lazy(() => import('./components/Downloads'));
+const Footer = lazy(() => import('./components/Footer'));
 
 // App is the main wrapper component for the landing page.
 // It stacks all the imported sections vertically.
@@ -19,17 +19,29 @@ function App() {
     <main className="min-h-screen w-full relative">
       <Navbar />
       <Hero />
-      <Features />
-      <Philosophy />
-      {/* 
-        The Protocol component has a sticky/stacking scrolling effect. 
-        It relies on GSAP ScrollTrigger to pin elements to the screen while scrolling. 
-        It must not be placed inside a container with 'overflow: hidden', or else the scrolling animation won't work.
-      */}
-      <Protocol />
-      <AdvancedFeatures />
-      <Downloads />
-      <Footer />
+      <Suspense fallback={<div className="h-32" aria-hidden="true" />}>
+        <div className="content-auto">
+          <Features />
+        </div>
+        <div className="content-auto">
+          <Philosophy />
+        </div>
+        {/* 
+          The Protocol component has a sticky/stacking scrolling effect. 
+          It relies on GSAP ScrollTrigger to pin elements to the screen while scrolling. 
+          It must not be placed inside a container with 'overflow: hidden', or else the scrolling animation won't work.
+        */}
+        <div className="content-auto">
+          <Protocol />
+        </div>
+        <div className="content-auto">
+          <AdvancedFeatures />
+        </div>
+        <div className="content-auto">
+          <Downloads />
+        </div>
+        <Footer />
+      </Suspense>
     </main>
   );
 }

@@ -42,7 +42,7 @@ export default function Hero() {
       <div 
         className="absolute inset-0 z-0 bg-repeat opacity-20 dark:opacity-30"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2000&auto=format&fit=crop')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=70&w=1400&auto=format&fit=crop')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'grayscale(100%) contrast(120%)'

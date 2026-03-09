@@ -58,7 +58,7 @@ export default function Philosophy() {
       {/* Background texture fetching an image from Unsplash, set to 10% opacity behind the text */}
       <div 
         className="absolute inset-0 z-0 opacity-10 bg-cover bg-center select-none"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1614064088926-ab239def7326?q=80&w=2000&auto=format&fit=crop')" }}
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1614064088926-ab239def7326?q=70&w=1400&auto=format&fit=crop')" }}
       ></div>
 
       {/* Wrapping content tightly inside the section using max-width and center alignment */}

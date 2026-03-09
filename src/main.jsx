@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -8,9 +8,9 @@ import './index.css'
 // Initialize internationalization (i18n) for language support (English/Farsi)
 import './i18n'
 
-// Import the main pages of the application
-import App from './App.jsx'
-import PrivacyPolicy from './PrivacyPolicy.jsx'
+// Import the main pages lazily to reduce initial bundle cost on slower networks/devices
+const App = lazy(() => import('./App.jsx'));
+const PrivacyPolicy = lazy(() => import('./PrivacyPolicy.jsx'));
 
 // Helper function to determine whether to load light or dark mode on initial startup.
 // It first checks local storage for a saved preference.
@@ -36,12 +36,14 @@ if (theme === 'dark') {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        {/* The main landing page */}
-        <Route path="/" element={<App />} />
-        {/* The privacy policy page */}
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen w-full bg-background-light dark:bg-background-dark" aria-hidden="true" />}>
+        <Routes>
+          {/* The main landing page */}
+          <Route path="/" element={<App />} />
+          {/* The privacy policy page */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   </StrictMode>,
 )

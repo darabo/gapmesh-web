@@ -34,6 +34,11 @@
 }
 
 @layer utilities {
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
+
   .noise-overlay {
     position: fixed;
     inset: 0;

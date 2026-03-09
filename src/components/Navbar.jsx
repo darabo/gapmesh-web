@@ -66,10 +66,15 @@ export default function Navbar() {
       `}
     >
       {/* Brand logo and name - clicking it scrolls to the very top */}
-      <div className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer flex items-center gap-3" onClick={() => window.scrollTo(0,0)}>
+      <button
+        type="button"
+        className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer flex items-center gap-3"
+        onClick={() => window.scrollTo(0,0)}
+        aria-label="Back to top"
+      >
         <img src="/gapmesh-icon.png" alt="Gap Mesh Logo" className="w-8 h-8 rounded-[8px] shadow-sm" />
         Gap Mesh
-      </div>
+      </button>
 
       {/* Navigation links (hidden on mobile devices using 'hidden md:flex') */}
       <div className="hidden md:flex items-center gap-8 font-sans text-sm font-medium">
@@ -80,10 +85,10 @@ export default function Navbar() {
 
       <div className="flex items-center gap-4">
         {/* Utilities: Theme & language toggle buttons */}
-        <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
+        <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle theme" aria-pressed={isDark}>
           {isDark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
-        <button onClick={toggleLanguage} className="font-mono text-sm font-bold uppercase p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+        <button onClick={toggleLanguage} className="font-mono text-sm font-bold uppercase p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Toggle language">
           {i18n.language === 'en' ? 'FA' : 'EN'}
         </button>
 
