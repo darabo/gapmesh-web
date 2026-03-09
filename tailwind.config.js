@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import typography from '@tailwindcss/typography';
+
 export default {
   content: [
     "./index.html",
@@ -14,7 +16,7 @@ export default {
         },
         primary: {
           light: '#0A0A14', // Deep Void text/elements in light mode
-          dark: '#0A0A14', // Deep Void 
+          dark: '#0A0A14', // Deep Void
         },
         accent: {
           DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)', // Adaptive Gap Mesh Green
@@ -41,6 +43,6 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    typography,
   ],
 }

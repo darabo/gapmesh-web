@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +12,22 @@ export default function Philosophy() {
   const sectionRef = useRef(null); // The overall section container (triggers animation when scrolled to)
   const commonRef = useRef(null); // The smaller "common approach" text
   const diffRef = useRef(null); // The larger "differentiated approach" text
+
+  // Responsive image sizing based on viewport
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    const updateImageUrl = () => {
+      const width = window.innerWidth;
+      // Use smaller image sizes for mobile devices to reduce bandwidth
+      const imageWidth = width <= 768 ? 800 : width <= 1440 ? 1400 : 1920;
+      setImageUrl(`https://images.unsplash.com/photo-1614064088926-ab239def7326?q=70&w=${imageWidth}&auto=format&fit=crop`);
+    };
+
+    updateImageUrl();
+    window.addEventListener('resize', updateImageUrl);
+    return () => window.removeEventListener('resize', updateImageUrl);
+  }, []);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -56,10 +72,12 @@ export default function Philosophy() {
     // 'bg-primary-dark overflow-hidden' ensures a solid dark background color and confines background textures
     <section ref={sectionRef} className="relative w-full py-32 md:py-48 bg-primary-dark overflow-hidden text-white flex items-center justify-center -mx-4 md:mx-0">
       {/* Background texture fetching an image from Unsplash, set to 10% opacity behind the text */}
-      <div 
-        className="absolute inset-0 z-0 opacity-10 bg-cover bg-center select-none"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1614064088926-ab239def7326?q=70&w=1400&auto=format&fit=crop')" }}
-      ></div>
+      {imageUrl && (
+        <div
+          className="absolute inset-0 z-0 opacity-10 bg-cover bg-center select-none"
+          style={{ backgroundImage: `url('${imageUrl}')` }}
+        ></div>
+      )}
 
       {/* Wrapping content tightly inside the section using max-width and center alignment */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center">

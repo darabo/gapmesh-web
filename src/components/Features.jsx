@@ -69,24 +69,26 @@ const TypewriterCard = ({ title, desc, liveLabel }) => {
   const [text, setText] = useState(''); // Holds the currently typed text string
   const fullText = "Connecting to #dr5rsj7 via Nostr Relay... Tor circuit complete. Subscribed to Geohash channel.";
   const [idx, setIdx] = useState(0); // Holds the current character index
+  const timeoutRef = useRef(null); // Use ref to store timeout for cleanup
 
   useEffect(() => {
     // If we haven't typed the full string yet...
     if (idx < fullText.length) {
       // Set a timeout to add the next character. The timeout duration is randomized (20ms-70ms) to simulate real human/machine typing speed variations.
-      const timeout = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setText((prev) => prev + fullText.charAt(idx));
         setIdx(idx + 1);
-      }, Math.random() * 50 + 20); 
-      return () => clearTimeout(timeout);
+      }, Math.random() * 50 + 20);
     } else {
       // Once fully typed, wait 5 seconds and then reset the typewriter back to empty
-      const reset = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setText('');
         setIdx(0);
       }, 5000);
-      return () => clearTimeout(reset);
     }
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [idx, fullText]);
 
   return (

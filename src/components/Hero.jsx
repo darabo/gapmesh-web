@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 
@@ -7,6 +7,22 @@ export default function Hero() {
   // Refs allow us to select specific DOM elements to animate them using GSAP
   const heroRef = useRef(null);
   const textContainerRef = useRef(null);
+
+  // Responsive image sizing based on viewport
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    const updateImageUrl = () => {
+      const width = window.innerWidth;
+      // Use smaller image sizes for mobile devices to reduce bandwidth
+      const imageWidth = width <= 768 ? 800 : width <= 1440 ? 1400 : 1920;
+      setImageUrl(`https://images.unsplash.com/photo-1524661135-423995f22d0b?q=70&w=${imageWidth}&auto=format&fit=crop`);
+    };
+
+    updateImageUrl();
+    window.addEventListener('resize', updateImageUrl);
+    return () => window.removeEventListener('resize', updateImageUrl);
+  }, []);
 
   // useLayoutEffect runs synchronously immediately after React performs all DOM mutations.
   // This is preferred over useEffect for animations to avoid layout flickering.
@@ -39,15 +55,17 @@ export default function Hero() {
     <section ref={heroRef} className="relative w-full h-[100dvh] flex items-end overflow-hidden">
       {/* Background Image: A subtle dot map pattern indicating a global network. */}
       {/* Using an absolute position with 'inset-0' makes it fill its parent relative container. */}
-      <div 
-        className="absolute inset-0 z-0 bg-repeat opacity-20 dark:opacity-30"
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=70&w=1400&auto=format&fit=crop')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'grayscale(100%) contrast(120%)'
-        }}
-      ></div>
+      {imageUrl && (
+        <div
+          className="absolute inset-0 z-0 bg-repeat opacity-20 dark:opacity-30"
+          style={{
+            backgroundImage: `url('${imageUrl}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'grayscale(100%) contrast(120%)'
+          }}
+        ></div>
+      )}
       
       {/* Gradient Overlay: fades from the app's primary background color at the bottom to transparent at the top. */}
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light/40 dark:via-background-dark/80 to-transparent"></div>
