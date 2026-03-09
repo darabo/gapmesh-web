@@ -19,9 +19,9 @@ const ShufflerCard = ({ title, desc, labels }) => {
 
   return (
     <div className="bg-white/5 dark:bg-black/20 backdrop-blur-md rounded-[2rem] p-8 border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden group">
-      <div className="absolute top-6 right-6 text-accent opacity-50"><WifiOff size={24} /></div>
-      <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4">{title}</h3>
-      <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-8">{desc}</p>
+      <div className="absolute top-6 ltr:right-6 rtl:left-6 text-accent opacity-50"><WifiOff size={24} /></div>
+      <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4 text-start">{title}</h3>
+      <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-8 text-start">{desc}</p>
       
       <div className="relative h-24 w-full perspective-1000">
         {labels.map((label, idx) => {
@@ -70,11 +70,11 @@ const TypewriterCard = ({ title, desc, liveLabel }) => {
 
   return (
     <div className="bg-white/5 dark:bg-black/20 backdrop-blur-md rounded-[2rem] p-8 border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden group">
-      <div className="absolute top-6 right-6 text-accent opacity-50"><Globe size={24} /></div>
-      <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4">{title}</h3>
-      <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-6">{desc}</p>
+      <div className="absolute top-6 ltr:right-6 rtl:left-6 text-accent opacity-50"><Globe size={24} /></div>
+      <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4 text-start">{title}</h3>
+      <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-6 text-start">{desc}</p>
       
-      <div className="bg-black/90 p-4 rounded-xl text-green-400 font-mono text-xs w-full h-28 overflow-hidden relative shadow-inner">
+      <div dir="ltr" className="bg-black/90 text-left p-4 rounded-xl text-green-400 font-mono text-xs w-full h-28 overflow-hidden relative shadow-inner">
         <div className="flex items-center gap-2 mb-2 text-white/50 border-b border-white/10 pb-2">
           <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
           <span className="text-[10px] uppercase tracking-wider">{liveLabel}</span>
@@ -109,9 +109,9 @@ const CursorCard = ({ title, desc, secureLabel }) => {
 
   return (
     <div className="bg-white/5 dark:bg-black/20 backdrop-blur-md rounded-[2rem] p-8 border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden group">
-      <div className="absolute top-6 right-6 text-accent opacity-50"><ShieldCheck size={24} /></div>
-      <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4">{title}</h3>
-      <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-6">{desc}</p>
+      <div className="absolute top-6 ltr:right-6 rtl:left-6 text-accent opacity-50"><ShieldCheck size={24} /></div>
+      <h3 className="font-sans font-bold text-2xl text-text-light dark:text-text-dark mb-4 text-start">{title}</h3>
+      <p className="font-sans text-text-light/70 dark:text-text-dark/70 text-sm leading-relaxed mb-6 text-start">{desc}</p>
       
       <div className="bg-black/5 dark:bg-white/5 rounded-xl p-4 h-28 relative flex items-center justify-center border border-black/10 dark:border-white/10">
         <div className="secure-badge border border-accent/50 text-accent font-mono text-xs px-3 py-1 rounded-full transition-colors">
@@ -119,7 +119,7 @@ const CursorCard = ({ title, desc, secureLabel }) => {
         </div>
         
         {/* SVG Cursor */}
-        <div ref={cursorRef} className="absolute top-2 left-6 z-20" style={{ filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.25))' }}>
+        <div ref={cursorRef} className="absolute top-2 ltr:left-6 rtl:right-6 z-20" style={{ filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.25))' }}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.5 2.5L11.5 21.5L14.5 13.5L22.5 10.5L5.5 2.5Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinejoin="round"/>
           </svg>

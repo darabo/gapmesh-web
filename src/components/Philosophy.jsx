@@ -71,10 +71,10 @@ export default function Philosophy() {
               <span className="text-accent underline decoration-accent/30 underline-offset-8 mt-2 inline-block">Unstoppable peer-to-peer messaging.</span>
             </>
           ) : (
-            <>
+            <div className="text-3xl md:text-5xl leading-tight flex flex-col items-center gap-2 mt-2 md:mt-4">
               تمرکز ما:
-              <span className="text-accent underline decoration-accent/30 underline-offset-8 mt-2 inline-block font-sans font-bold">حریم خصوصی و ارتباطات غیرقابل توقف نظیر به نظیر.</span>
-            </>
+              <span className="text-accent underline decoration-accent/30 underline-offset-8 mt-2 md:mt-4 inline-block font-sans font-bold">حریم خصوصی و ارتباطات غیرقابل توقف نظیر به نظیر.</span>
+            </div>
           )}
         </h2>
       </div>
