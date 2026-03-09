@@ -1,9 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const getShouldStack = () => {
+  if (typeof window === 'undefined') {
+    return true;
+  }
+  return window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
 
 // --- Custom SVG visualizations per step ---
 
@@ -42,12 +49,24 @@ const PulsingEKG = () => (
 export default function Protocol() {
   const { t } = useTranslation();
   const containerRef = useRef(null);
-  const shouldStack = typeof window === 'undefined'
-    ? true
-    : window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const [shouldStack, setShouldStack] = useState(getShouldStack);
   
   // cardsRef holds an array of references to the individual step cards so we can animate them in a loop.
   const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateShouldStack = () => setShouldStack(getShouldStack());
+
+    updateShouldStack();
+    window.addEventListener('resize', updateShouldStack);
+    motionQuery.addEventListener?.('change', updateShouldStack);
+
+    return () => {
+      window.removeEventListener('resize', updateShouldStack);
+      motionQuery.removeEventListener?.('change', updateShouldStack);
+    };
+  }, []);
 
   useEffect(() => {
     if (!shouldStack) {
