@@ -1,48 +1,19 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { gsap } from 'gsap';
 import { useResponsiveImageUrl } from '../hooks/useResponsiveImageUrl';
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
-  // Refs allow us to select specific DOM elements to animate them using GSAP
-  const heroRef = useRef(null);
-  const textContainerRef = useRef(null);
 
   // Responsive image sizing based on viewport with debouncing
   const imageUrl = useResponsiveImageUrl(
     'https://images.unsplash.com/photo-1524661135-423995f22d0b?q=70&w={width}&auto=format&fit=crop'
   );
 
-  // useLayoutEffect runs synchronously immediately after React performs all DOM mutations.
-  // This is preferred over useEffect for animations to avoid layout flickering.
-  useLayoutEffect(() => {
-    // gsap.context helps us clean up animations when the component unmounts
-    let ctx = gsap.context(() => {
-      // Staggered fade up for text: Animate all elements with class '.hero-el'
-      // starting from Y offset 40px and 0 opacity, to original position with full opacity.
-      gsap.fromTo(
-        '.hero-el',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          stagger: 0.08, // The elements animate in one after another with an 0.08s delay between each
-          ease: 'power3.out',
-          delay: 0.2
-        }
-      );
-    }, heroRef);
-
-    // This cleanup function reverts the DOM back to its original state when unmounting
-    return () => ctx.revert();
-  }, [i18n.language]); // re-run animation on language change
-
   return (
     // '100dvh' makes the section take up 100% of the dynamic viewport height (the exact size of the screen).
     // 'overflow-hidden' prevents horizontal scrolling issues.
-    <section ref={heroRef} className="relative w-full h-[100dvh] flex items-end overflow-hidden">
+    <section className="relative w-full h-screen min-h-[100dvh] flex items-end overflow-hidden">
       {/* Background Image: A subtle dot map pattern indicating a global network. */}
       {/* Using an absolute position with 'inset-0' makes it fill its parent relative container. */}
       <div
@@ -60,23 +31,35 @@ export default function Hero() {
 
       {/* Content wrapper: Contains the title, text, and buttons */}
       {/* Pushed to the bottom-left third by setting parent flex alignment, margin-auto limit, and padding. */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pb-24 md:pb-32 flex flex-col justify-end" ref={textContainerRef}>
-        <div className="max-w-3xl">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pb-24 md:pb-32 flex flex-col justify-end">
+        <div key={i18n.language} className="max-w-3xl">
           <h1 className="flex flex-col gap-2">
             {/* The 't()' function from useTranslation pulls strings from i18n.js setup */}
-            <span className="hero-el font-sans font-bold text-3xl md:text-5xl tracking-tight text-text-light dark:text-white drop-shadow-md dark:drop-shadow-none">
+            <span
+              className="hero-el hero-fade font-sans font-bold text-3xl md:text-5xl tracking-tight text-text-light dark:text-white drop-shadow-md dark:drop-shadow-none motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:translate-y-0"
+              style={{ animationDelay: '200ms' }}
+            >
               {t('hero.pres')}
             </span>
-            <span className="hero-el font-serif italic text-6xl md:text-8xl leading-[0.9] text-accent drop-shadow-xl mt-2 block">
+            <span
+              className="hero-el hero-fade font-serif italic text-6xl md:text-8xl leading-[0.9] text-accent drop-shadow-xl mt-2 block motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:translate-y-0"
+              style={{ animationDelay: '280ms' }}
+            >
               {t('hero.drama')}
             </span>
           </h1>
           
-          <p className="hero-el font-sans text-lg md:text-xl text-text-light/80 dark:text-white/80 mt-8 max-w-xl leading-relaxed mix-blend-multiply dark:mix-blend-plus-lighter">
+          <p
+            className="hero-el hero-fade font-sans text-lg md:text-xl text-text-light/80 dark:text-white/80 mt-8 max-w-xl leading-relaxed mix-blend-multiply dark:mix-blend-plus-lighter motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:translate-y-0"
+            style={{ animationDelay: '360ms' }}
+          >
             {t('brand')} — The decentralized peer-to-peer messaging app for offline and internet-based communication.
           </p>
 
-          <div className="hero-el mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div
+            className="hero-el hero-fade mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:translate-y-0"
+            style={{ animationDelay: '440ms' }}
+          >
             {/* The primary call-to-action is the App Store Link badge */}
             <a 
               href="https://apps.apple.com/us/app/gap-mesh/id6757211522" 

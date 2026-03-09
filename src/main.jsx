@@ -19,11 +19,15 @@ const PrivacyPolicy = lazy(() => import('./PrivacyPolicy.jsx'));
 // It first checks local storage for a saved preference.
 // If not found, it checks the user's system preferences (macOS/Windows settings).
 const getInitialTheme = () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    return savedTheme;
+  try {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme;
+    }
+  } catch {
+    // Ignore storage read failures and fallback to system preference.
   }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
 // Apply the determined theme to the document so Tailwind's 'dark:' classes work.

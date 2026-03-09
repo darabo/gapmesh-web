@@ -31,12 +31,39 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer utilities {
   .content-auto {
     content-visibility: auto;
     contain-intrinsic-size: 1px 1000px;
+  }
+
+  .hero-fade {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: hero-fade-up 700ms ease-out forwards;
+  }
+
+  @keyframes hero-fade-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .noise-overlay {
@@ -63,5 +90,11 @@
   
   .link-hover:hover {
     transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    .noise-overlay {
+      display: none;
+    }
   }
 }

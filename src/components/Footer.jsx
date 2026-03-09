@@ -15,7 +15,10 @@ export default function Footer() {
         {/* Left column: Brand Identity & Contact Info */}
         <div className="flex flex-col gap-4">
           <button type="button" className="flex items-center gap-3 cursor-pointer link-hover text-left" onClick={() => window.scrollTo(0, 0)} aria-label="Back to top">
-            <img src="/gapmesh-icon.png" alt="Gap Mesh Logo" className="w-10 h-10 rounded-[10px] shadow-md" />
+            <picture>
+              <source srcSet="/gapmesh-icon.webp" type="image/webp" />
+              <img src="/gapmesh-icon-128.png" alt="Gap Mesh Logo" width="40" height="40" className="w-10 h-10 rounded-[10px] shadow-md" />
+            </picture>
             <h2 className="font-sans font-bold text-3xl tracking-tight">
                {t('brand')}
             </h2>

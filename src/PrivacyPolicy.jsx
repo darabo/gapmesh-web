@@ -15,11 +15,19 @@ export default function PrivacyPolicy() {
     const root = document.documentElement;
     if (root.classList.contains('dark')) {
       root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      try {
+        localStorage.setItem('theme', 'light');
+      } catch {
+        // Ignore storage write failures.
+      }
       setIsDark(false);
     } else {
       root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      try {
+        localStorage.setItem('theme', 'dark');
+      } catch {
+        // Ignore storage write failures.
+      }
       setIsDark(true);
     }
   };
@@ -27,7 +35,6 @@ export default function PrivacyPolicy() {
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'fa' : 'en';
     i18n.changeLanguage(newLang);
-    document.documentElement.dir = newLang === 'fa' ? 'rtl' : 'ltr';
   };
 
   useEffect(() => {
@@ -37,7 +44,6 @@ export default function PrivacyPolicy() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('lang') === 'fa' && i18n.language !== 'fa') {
       i18n.changeLanguage('fa');
-      document.documentElement.dir = 'rtl';
     }
   }, [i18n]);
 
@@ -224,10 +230,21 @@ _آخرین به روز رسانی: مارس 2026_
           )}
         </Link>
         <div className="flex items-center gap-4">
-          <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            aria-label="Toggle theme"
+            aria-pressed={isDark}
+          >
             {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <button onClick={toggleLanguage} className="font-mono text-sm font-bold uppercase hover:text-accent transition-colors">
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="font-mono text-sm font-bold uppercase hover:text-accent transition-colors"
+            aria-label="Toggle language"
+          >
             {i18n.language === 'en' ? 'FA' : 'EN'}
           </button>
         </div>

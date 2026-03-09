@@ -48,7 +48,7 @@ export default defineConfig({
           // In Rollup 4.x, assetInfo.name can be undefined; use assetInfo.names or guard
           const name = assetInfo.name || assetInfo.names?.[0];
           if (!name) {
-            return `assets/[name]-[hash][extname]`;
+            return `assets/asset-[hash][extname]`;
           }
           const info = name.split('.');
           const ext = info[info.length - 1];
