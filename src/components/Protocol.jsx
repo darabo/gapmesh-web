@@ -60,11 +60,19 @@ export default function Protocol() {
 
     updateShouldStack();
     window.addEventListener('resize', updateShouldStack);
-    motionQuery.addEventListener?.('change', updateShouldStack);
+    if (motionQuery.addEventListener) {
+      motionQuery.addEventListener('change', updateShouldStack);
+    } else {
+      motionQuery.addListener(updateShouldStack);
+    }
 
     return () => {
       window.removeEventListener('resize', updateShouldStack);
-      motionQuery.removeEventListener?.('change', updateShouldStack);
+      if (motionQuery.removeEventListener) {
+        motionQuery.removeEventListener('change', updateShouldStack);
+      } else {
+        motionQuery.removeListener(updateShouldStack);
+      }
     };
   }, []);
 
