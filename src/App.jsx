@@ -40,7 +40,9 @@ function App() {
         <div className="content-auto">
           <Downloads />
         </div>
-        <Footer />
+        <div className="content-auto">
+          <Footer />
+        </div>
       </Suspense>
     </main>
   );
