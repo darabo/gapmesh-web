@@ -17,7 +17,7 @@ export default {
           dark: '#0A0A14', // Deep Void 
         },
         accent: {
-          DEFAULT: '#39FF14', // Gap Mesh Neon Green
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)', // Adaptive Gap Mesh Green
         },
         text: {
           light: '#18181B', // Graphite

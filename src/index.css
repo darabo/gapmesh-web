@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Theme.kt LightColorScheme primary */
+    --color-accent: 0 128 0; /* #008000 */
+  }
+
+  html.dark {
+    /* Theme.kt DarkColorScheme primary */
+    --color-accent: 57 255 20; /* #39FF14 */
+  }
+
   html {
     color: theme('colors.text.light');
     background-color: theme('colors.background.light');
