@@ -35,7 +35,7 @@ const resources = {
         step1: {
           num: "01",
           title: "Intelligent Routing",
-          desc: "Gap Mesh constantly scans for nearby Bluetooth peers to route your messages."
+          desc: "Gap Mesh constantly scans for nearby Bluetooth and Wi-Fi peers to route your messages."
         },
         step2: {
           num: "02",
@@ -54,7 +54,8 @@ const resources = {
         panic_wipe: { title: "Decoy Mode & Panic Wipe", desc: "Hardware-backed emergency wipe destroys all cryptographic keys instantly. Decoy mode provides plausible deniability." },
         disguise: { title: "App Disguise & Tor Routing", desc: "Camouflage Gap Mesh as a calculator or weather app. Route online traffic through the Tor anonymity network." },
         anonymity: { title: "Absolute Anonymity", desc: "No phone numbers required. No accounts. No centralized metadata collection." },
-        rich_media: { title: "Rich Media & Commands", desc: "Send encrypted images and voice notes. Use IRC-style slash commands." }
+        rich_media: { title: "Rich Media & Commands", desc: "Send encrypted images and voice notes. Use IRC-style slash commands." },
+        offline_share: { title: "Offline App Sharing", desc: "Share the Android app directly with nearby iOS and Android users without any internet connection." }
       },
       downloads: {
         title: "Install Gap Mesh",
@@ -106,7 +107,7 @@ const resources = {
         step1: {
           num: "۰۱",
           title: "مسیریابی هوشمند",
-          desc: "گپ مش به طور مداوم برای یافتن همتایان بلوتوثی نزدیک جهت مسیریابی پیام‌های شما جستجو می‌کند."
+          desc: "گپ مش به طور مداوم برای یافتن همتایان بلوتوثی و وای‌فای نزدیک جهت مسیریابی پیام‌های شما جستجو می‌کند."
         },
         step2: {
           num: "۰۲",
@@ -125,7 +126,8 @@ const resources = {
         panic_wipe: { title: "حالت فریب و پاکسازی اضطراری", desc: "پاکسازی سریع و امن کلیدهای رمزنگاری در مواقع اضطراری. حالت فریب برای انکار منطقی تعبیه شده است." },
         disguise: { title: "تغییر آیکون و مسیریابی تور", desc: "مخفی کردن برنامه به شکل ماشین حساب یا هواشناسی. عبور ترافیک از شبکه ناشناس تور." },
         anonymity: { title: "ناشناسی مطلق", desc: "بدون نیاز به شماره تلفن. بدون حساب کاربری. بدون جمع‌آوری اطلاعات و فراداده." },
-        rich_media: { title: "ارسال فایل و دستورات", desc: "ارسال تصاویر و پیام‌های صوتی رمزنگاری شده. استفاده از دستورات مشابه IRC." }
+        rich_media: { title: "ارسال فایل و دستورات", desc: "ارسال تصاویر و پیام‌های صوتی رمزنگاری شده. استفاده از دستورات مشابه IRC." },
+        offline_share: { title: "اشتراک‌گذاری آفلاین برنامه", desc: "برنامه اندروید را به طور مستقیم و بدون نیاز به اینترنت با سایر کاربران آی‌اواس و اندروید به اشتراک بگذارید." }
       },
       downloads: {
         title: "نصب گپ مش",

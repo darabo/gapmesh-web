@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShieldAlert, EyeOff, UserX, MessageSquareShare } from 'lucide-react';
+import { ShieldAlert, EyeOff, UserX, MessageSquareShare, Share2 } from 'lucide-react';
 
 export default function AdvancedFeatures() {
   const { t } = useTranslation();
@@ -25,6 +25,11 @@ export default function AdvancedFeatures() {
       icon: <MessageSquareShare size={28} className="text-accent" />,
       title: t('advanced_features.rich_media.title'),
       desc: t('advanced_features.rich_media.desc')
+    },
+    {
+      icon: <Share2 size={28} className="text-accent" />,
+      title: t('advanced_features.offline_share.title'),
+      desc: t('advanced_features.offline_share.desc')
     }
   ];
 
@@ -39,7 +44,7 @@ export default function AdvancedFeatures() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
         {features.map((feature, idx) => (
           <div 
             key={idx} 
