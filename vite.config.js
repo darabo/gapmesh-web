@@ -45,7 +45,12 @@ export default defineConfig({
         },
         // Optimize asset file names
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split('.');
+          // In Rollup 4.x, assetInfo.name can be undefined; use assetInfo.names or guard
+          const name = assetInfo.name || assetInfo.names?.[0];
+          if (!name) {
+            return `assets/[name]-[hash][extname]`;
+          }
+          const info = name.split('.');
           const ext = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
@@ -62,9 +67,8 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // Remove console.log in production
+        drop_console: true, // Remove all console.* calls in production
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info'], // Remove specific console methods
       },
     },
     // Source map for debugging (can be disabled for smaller builds)

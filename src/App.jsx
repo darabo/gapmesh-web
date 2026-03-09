@@ -20,20 +20,14 @@ function App() {
       <Navbar />
       <Hero />
       <Suspense fallback={<div className="h-32" aria-hidden="true" />}>
-        <div className="content-auto">
-          <Features />
-        </div>
-        <div className="content-auto">
-          <Philosophy />
-        </div>
-        {/* 
-          The Protocol component has a sticky/stacking scrolling effect. 
-          It relies on GSAP ScrollTrigger to pin elements to the screen while scrolling. 
+        <Features />
+        <Philosophy />
+        {/*
+          The Protocol component has a sticky/stacking scrolling effect.
+          It relies on GSAP ScrollTrigger to pin elements to the screen while scrolling.
           It must not be placed inside a container with 'overflow: hidden', or else the scrolling animation won't work.
         */}
-        <div className="content-auto">
-          <Protocol />
-        </div>
+        <Protocol />
         <div className="content-auto">
           <AdvancedFeatures />
         </div>

@@ -8,8 +8,11 @@ import './index.css'
 // Initialize internationalization (i18n) for language support (English/Farsi)
 import './i18n'
 
-// Import the main pages lazily to reduce initial bundle cost on slower networks/devices
-const App = lazy(() => import('./App.jsx'));
+// Import the main App page statically since it's the primary landing page
+// The App component is already lightweight as it lazy-loads its below-the-fold sections
+import App from './App.jsx';
+
+// Import the PrivacyPolicy page lazily to reduce initial bundle cost (secondary route)
 const PrivacyPolicy = lazy(() => import('./PrivacyPolicy.jsx'));
 
 // Helper function to determine whether to load light or dark mode on initial startup.
