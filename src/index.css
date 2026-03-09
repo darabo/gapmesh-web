@@ -17,6 +17,8 @@
     color: theme('colors.text.light');
     background-color: theme('colors.background.light');
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     /* Farsi support handles dir="rtl" on html tag */
   }
 

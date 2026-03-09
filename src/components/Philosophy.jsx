@@ -60,7 +60,7 @@ export default function Philosophy() {
 
   return (
     // 'bg-primary-dark overflow-hidden' ensures a solid dark background color and confines background textures
-    <section ref={sectionRef} className="relative w-full py-32 md:py-48 bg-primary-dark overflow-hidden text-white flex items-center justify-center -mx-4 md:mx-0">
+    <section ref={sectionRef} className="relative w-full py-24 md:py-48 bg-primary-dark overflow-hidden text-white flex items-center justify-center">
       {/* Background texture fetching an image from Unsplash, set to 10% opacity behind the text */}
       <div
         className="absolute inset-0 z-0 opacity-10 bg-cover bg-center select-none"
@@ -75,7 +75,7 @@ export default function Philosophy() {
         </p>
 
         {/* Second sentence (larger & bold) */}
-        <h2 ref={diffRef} className="font-serif italic text-4xl md:text-7xl leading-tight text-white drop-shadow-2xl flex flex-col items-center justify-center gap-2">
+        <h2 ref={diffRef} className="font-serif italic text-3xl sm:text-5xl md:text-7xl leading-tight text-white drop-shadow-2xl flex flex-col items-center justify-center gap-2">
           {/* We conditionally render English vs Farsi styling directly because of font and formatting discrepancies */}
           {i18n.language === 'en' ? (
             <>

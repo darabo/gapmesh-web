@@ -42,11 +42,18 @@ const PulsingEKG = () => (
 export default function Protocol() {
   const { t } = useTranslation();
   const containerRef = useRef(null);
+  const shouldStack = typeof window === 'undefined'
+    ? true
+    : window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
   // cardsRef holds an array of references to the individual step cards so we can animate them in a loop.
   const cardsRef = useRef([]);
 
   useEffect(() => {
+    if (!shouldStack) {
+      return;
+    }
+
     let ctx = gsap.context(() => {
       // Stacking effect using GSAP ScrollTrigger
       // For each card (except the last one), we pin it when it reaches the top of the viewport.
@@ -73,7 +80,7 @@ export default function Protocol() {
     }, containerRef);
     
     return () => ctx.revert();
-  }, []);
+  }, [shouldStack]);
 
   // Data array grouping the translation keys and the visual React components together
   const steps = [
@@ -89,7 +96,7 @@ export default function Protocol() {
         <div 
           key={step.key}
           ref={el => cardsRef.current[idx] = el} // Save the element reference into the array mapping for GSAP
-          className="h-[100vh] w-full flex items-center justify-center px-6 sticky top-0"
+          className={`w-full flex items-center justify-center px-6 ${shouldStack ? 'h-[100svh] md:h-[100vh] sticky top-0' : 'min-h-[72svh] py-8 md:py-12'}`}
         >
           {/* Inside Card Layout */}
           <div className="w-full max-w-5xl bg-white dark:bg-[#12121A] rounded-[3rem] p-12 md:p-20 shadow-2xl border border-black/5 dark:border-white/5 flex flex-col md:flex-row items-center gap-12 md:gap-24">
