@@ -17,7 +17,7 @@ export default {
           dark: '#0A0A14', // Deep Void 
         },
         accent: {
-          DEFAULT: '#7B61FF', // Plasma
+          DEFAULT: '#39FF14', // Gap Mesh Neon Green
         },
         text: {
           light: '#18181B', // Graphite
