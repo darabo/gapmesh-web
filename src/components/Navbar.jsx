@@ -71,8 +71,8 @@ export default function Navbar() {
       ref={navRef}
       className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between min-h-[52px] px-3 py-2 sm:px-6 sm:py-3 rounded-2xl sm:rounded-full transition-all duration-300 w-[94%] max-w-4xl top-[max(0.5rem,env(safe-area-inset-top))]
         ${scrolled 
-          ? 'bg-background-light/90 dark:bg-background-dark/90 supports-[backdrop-filter:blur(1px)]:backdrop-blur-xl border border-primary-light/10 dark:border-primary-dark/50 shadow-lg'
-          : 'bg-background-light/75 dark:bg-background-dark/75 supports-[backdrop-filter:blur(1px)]:backdrop-blur-md border border-transparent'
+          ? 'bg-background-light/60 dark:bg-background-dark/60 supports-[backdrop-filter:blur(1px)]:backdrop-blur-xl border border-primary-light/10 dark:border-primary-dark/50 shadow-lg'
+          : 'bg-transparent border-transparent'
         }
       `}
     >
