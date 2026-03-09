@@ -11,12 +11,18 @@ export default function Footer() {
         
         {/* Left: Brand & Tagline */}
         <div className="flex flex-col gap-4">
-          <h2 className="font-sans font-bold text-3xl tracking-tight link-hover cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-             {t('brand')}
-          </h2>
+          <div className="flex items-center gap-3 cursor-pointer link-hover" onClick={() => window.scrollTo(0, 0)}>
+            <img src="/gapmesh-icon.png" alt="Gap Mesh Logo" className="w-10 h-10 rounded-[10px] shadow-md" />
+            <h2 className="font-sans font-bold text-3xl tracking-tight">
+               {t('brand')}
+            </h2>
+          </div>
           <p className="font-mono text-white/50 text-sm">
             {t('footer.tagline')}
           </p>
+          <a href="mailto:hello@gapmesh.com" className="font-mono text-white/70 hover:text-accent transition-colors text-sm mt-2 font-medium">
+            hello@gapmesh.com
+          </a>
         </div>
 
         {/* Right: Links */}

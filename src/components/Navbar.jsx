@@ -58,7 +58,8 @@ export default function Navbar() {
         }
       `}
     >
-      <div className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+      <div className="font-sans font-bold text-xl tracking-tight link-hover cursor-pointer flex items-center gap-3" onClick={() => window.scrollTo(0,0)}>
+        <img src="/gapmesh-icon.png" alt="Gap Mesh Logo" className="w-8 h-8 rounded-[8px] shadow-sm" />
         Gap Mesh
       </div>
 
