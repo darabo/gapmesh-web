@@ -59,7 +59,7 @@ export default function Hero() {
             {t('brand')} — The decentralized peer-to-peer messaging app for offline and internet-based communication.
           </p>
 
-          <div className="hero-el mt-10">
+          <div className="hero-el mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <a 
               href="https://apps.apple.com/us/app/gap-mesh/id6757211522" 
               target="_blank" 
@@ -76,6 +76,13 @@ export default function Hero() {
                 alt="Download on the App Store" 
                 className="h-full hidden dark:block"
               />
+            </a>
+            
+            <a
+              href="#download"
+              className="magnetic-btn flex items-center justify-center px-8 h-[50px] md:h-[60px] rounded-3xl font-sans font-semibold text-[15px] border transition-colors shadow-sm bg-text-light dark:bg-white text-white dark:text-[#12121A] border-transparent hover:bg-text-light/90 dark:hover:bg-white/90 shadow-black/20"
+            >
+              {t('hero.other_downloads')}
             </a>
           </div>
         </div>

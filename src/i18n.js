@@ -14,7 +14,8 @@ const resources = {
       },
       hero: {
         pres: "Gap Mesh is the",
-        drama: "Communication beyond."
+        drama: "Communication beyond.",
+        other_downloads: "Android & Other Downloads"
       },
       features: {
         f1_title: "Offline Mesh Network",
@@ -86,7 +87,8 @@ const resources = {
       },
       hero: {
         pres: "گپ مش یعنی",
-        drama: "ارتباطات فراتر از مرزها."
+        drama: "ارتباطات فراتر از مرزها.",
+        other_downloads: "اندروید و سایر دانلودها"
       },
       features: {
         f1_title: "شبکه مش آفلاین",
