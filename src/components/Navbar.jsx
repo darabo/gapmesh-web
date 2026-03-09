@@ -79,7 +79,7 @@ export default function Navbar() {
         </button>
 
         {/* CTA */}
-        <a href="#download" className="magnetic-btn bg-accent text-white px-5 py-2 rounded-full text-sm font-semibold relative overflow-hidden group hidden sm:block">
+        <a href="#download" className="magnetic-btn bg-accent text-white dark:text-[#0A0A14] px-5 py-2 rounded-full text-sm font-semibold relative overflow-hidden group hidden sm:block">
           <span className="relative z-10">{t('nav.download')}</span>
           <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></span>
         </a>
