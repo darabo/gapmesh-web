@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     // '100dvh' makes the section take up 100% of the dynamic viewport height (the exact size of the screen).
     // 'overflow-hidden' prevents horizontal scrolling issues.
-    <section className="relative w-full h-[100svh] min-h-[100dvh] flex items-end overflow-hidden">
+    <section className="relative w-full h-screen h-[100dvh] flex items-end overflow-hidden">
       {/* Background Image: A subtle dot map pattern indicating a global network. */}
       {/* Using an absolute position with 'inset-0' makes it fill its parent relative container. */}
       <div
