@@ -1,7 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Translations
+// Translations for different languages
+// This object acts like a dictionary mapping keys (like 'nav.home') to their translated text.
 const resources = {
   en: {
     translation: {
@@ -151,14 +152,15 @@ const resources = {
   }
 };
 
+// Initialize the i18next library
 i18n
-  .use(initReactI18next)
+  .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    resources,
-    lng: 'en', // default language
-    fallbackLng: 'en',
+    resources, // the dictionary of translations
+    lng: 'en', // default language set to English
+    fallbackLng: 'en', // default to English if a translation is missing in another language
     interpolation: {
-      escapeValue: false
+      escapeValue: false // React already escapes values automatically, so this is false
     }
   });
 

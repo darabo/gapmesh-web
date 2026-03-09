@@ -1,10 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+// Import specific SVG icons for each download platform
 import { Apple, Play, Code2, DownloadCloud, FlaskConical, Smartphone } from 'lucide-react';
 
 export default function Downloads() {
   const { t } = useTranslation();
 
+  // Array configuring all available download links.
+  // Each link has an icon, localized text, URL, and an 'accent' flag for primary styling.
+  // 'disabled' flag allows showing a button that isn't clickable yet (e.g. Google Play).
   const links = [
     { icon: <Apple size={24} />, text: t('downloads.app_store'), href: "https://apps.apple.com/us/app/gap-mesh/id6757211522", accent: true, disabled: false },
     { icon: <FlaskConical size={24} />, text: t('downloads.testflight'), href: "https://testflight.apple.com/join/Vgbv1MTy", accent: false, disabled: false },
@@ -16,24 +20,29 @@ export default function Downloads() {
   ];
 
   return (
+    // 'id="download"' acts as an anchor target for links (e.g. href="#download") from the Navbar and Hero
     <section id="download" className="py-32 px-6 w-full max-w-5xl mx-auto text-center relative z-20">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-text-light dark:text-text-dark mb-16">
         {t('downloads.title')}
       </h2>
       
+      {/* Flex container displaying buttons wrapping onto new lines if there isn't enough horizontal space */}
       <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6">
-        {/* App Store Badge - Theme Aware */}
+        
+        {/* App Store Badge - Custom image that switches between light and dark modes */}
         <a 
           href="https://apps.apple.com/us/app/gap-mesh/id6757211522" 
           target="_blank" 
           rel="noopener noreferrer"
           className="magnetic-btn inline-block h-[40px] md:h-[50px]"
         >
+          {/* Black image is shown default, hidden in dark mode */}
           <img 
             src="/images/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" 
             alt="Download on the App Store" 
             className="h-full dark:hidden"
           />
+          {/* White image is hidden default, shown in dark mode */}
           <img 
             src="/images/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg" 
             alt="Download on the App Store" 
@@ -41,10 +50,12 @@ export default function Downloads() {
           />
         </a>
 
+        {/* Map through the rest of the links array to generate buttons */}
         {links.map((link, idx) => {
-          // Skip the first link if it's the App Store one (we handle it above for custom image)
+          // Skip the first Apple Store link from the array entirely, because we rendered the custom badge for it above
           if (link.href === "https://apps.apple.com/us/app/gap-mesh/id6757211522") return null;
           
+          // Render a disabled "Coming Soon" button style
           if (link.disabled) {
             return (
               <div
@@ -57,16 +68,18 @@ export default function Downloads() {
             );
           }
           
+          // Render an active button
           return (
             <a
               key={idx}
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" // Opens link in a new tab
+              rel="noopener noreferrer" // Security best practice for target="_blank"
+              // Dynamically apply classes based on whether the 'accent' property is true or false
               className={`magnetic-btn flex items-center justify-center gap-3 px-8 py-3 md:py-4 rounded-3xl font-sans font-semibold text-[15px] border transition-colors shadow-sm h-[40px] md:h-[50px]
                 ${link.accent 
-                  ? 'bg-accent text-white dark:text-[#0A0A14] border-accent hover:bg-accent/90 shadow-accent/20' 
-                  : 'bg-white dark:bg-[#12121A] text-text-light dark:text-text-dark border-black/10 dark:border-white/10 hover:border-accent hover:text-accent shadow-black/5'
+                  ? 'bg-accent text-white dark:text-[#0A0A14] border-accent hover:bg-accent/90 shadow-accent/20' // Primary style
+                  : 'bg-white dark:bg-[#12121A] text-text-light dark:text-text-dark border-black/10 dark:border-white/10 hover:border-accent hover:text-accent shadow-black/5' // Secondary style
                 }
               `}
             >
