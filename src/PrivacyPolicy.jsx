@@ -135,8 +135,7 @@ Gap Mesh requires Bluetooth permission to function:
 - Emergency panic wipe system designed to survive app crashes
 
 ## Contact
-- Android: [https://github.com/darabo/gap-android-main](https://github.com/darabo/gap-android-main)
-- iOS: [https://github.com/darabo/gapmesh-ios](https://github.com/darabo/gapmesh-ios)
+- Email: [support@gapmesh.com](mailto:support@gapmesh.com)
 
 ## Philosophy
 Privacy isn't just a feature—it's the entire point. Gap Mesh proves that modern communication doesn't require surrendering your privacy. No accounts, no servers, no surveillance. Just people talking freely.
@@ -199,8 +198,7 @@ _آخرین به روز رسانی: مارس 2026_
 - **Argon2id**
 
 ## تماس با ما
-- اندروید: [https://github.com/darabo/gap-android-main](https://github.com/darabo/gap-android-main)
-- آی‌اواس: [https://github.com/darabo/gapmesh-ios](https://github.com/darabo/gapmesh-ios)
+- ایمیل: [support@gapmesh.com](mailto:support@gapmesh.com)
 
 ## فلسفه ما
 حریم خصوصی فقط یک قابلیت نیست—همه چیزِ این برنامه است. بدون حساب کاربری، بدون سرور، بدون نظارت. فقط انسان‌هایی که آزادانه صحبت می‌کنند.
