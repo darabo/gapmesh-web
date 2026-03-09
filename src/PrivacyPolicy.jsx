@@ -32,7 +32,14 @@ export default function PrivacyPolicy() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    
+    // Check for language parameter in URL to support direct links from the mobile apps
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('lang') === 'fa' && i18n.language !== 'fa') {
+      i18n.changeLanguage('fa');
+      document.documentElement.dir = 'rtl';
+    }
+  }, [i18n]);
 
   const contentEn = `
 # Gap Mesh Privacy Policy

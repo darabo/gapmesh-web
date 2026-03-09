@@ -65,7 +65,7 @@ export default function Downloads() {
               rel="noopener noreferrer"
               className={`magnetic-btn flex items-center justify-center gap-3 px-8 py-3 md:py-4 rounded-3xl font-sans font-semibold text-[15px] border transition-colors shadow-sm h-[40px] md:h-[50px]
                 ${link.accent 
-                  ? 'bg-accent text-white border-accent hover:bg-accent/90 shadow-accent/20' 
+                  ? 'bg-accent text-white dark:text-[#0A0A14] border-accent hover:bg-accent/90 shadow-accent/20' 
                   : 'bg-white dark:bg-[#12121A] text-text-light dark:text-text-dark border-black/10 dark:border-white/10 hover:border-accent hover:text-accent shadow-black/5'
                 }
               `}
