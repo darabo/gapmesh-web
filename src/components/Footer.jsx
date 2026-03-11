@@ -2,6 +2,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 // React Router's Link is used for internal app navigation without reloading the page
 import { Link } from 'react-router-dom';
+import {
+  GITHUB_IOS_URL,
+  GITHUB_ANDROID_URL,
+  USER_GUIDE_EN_URL,
+  USER_GUIDE_FA_URL,
+  SUPPORT_EMAIL,
+} from '../constants';
 
 // The Footer component appears at the very bottom of the page in all modes
 export default function Footer() {
@@ -26,27 +33,27 @@ export default function Footer() {
           <p className="font-mono text-white/50 text-sm">
             {t('footer.tagline')}
           </p>
-          <a href="mailto:hello@gapmesh.com" className="font-mono text-white/70 hover:text-accent transition-colors text-sm mt-2 font-medium">
-            hello@gapmesh.com
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="font-mono text-white/70 hover:text-accent transition-colors text-sm mt-2 font-medium">
+            {SUPPORT_EMAIL}
           </a>
         </div>
 
         {/* Right column: Navigation Links organized in a 2-column grid */}
         <div className="grid grid-cols-2 gap-x-16 gap-y-4 font-sans text-sm font-medium text-white/70">
-          <a href="https://github.com/darabo/gapmesh-ios/blob/main/docs/USER_GUIDE_EN.md" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
+          <a href={USER_GUIDE_EN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
             {t('footer.user_guide')}
           </a>
-          <a href="https://github.com/darabo/gapmesh-ios/blob/main/docs/USER_GUIDE_FA.md" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
+          <a href={USER_GUIDE_FA_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
             {t('footer.user_guide_fa')}
           </a>
           {/* We use React Router's <Link> for the privacy policy to keep the user in the single-page application router */}
           <Link to="/privacy" onClick={() => window.scrollTo(0,0)} className="hover:text-accent transition-colors link-hover">
             {t('footer.privacy')}
           </Link>
-          <a href="https://github.com/darabo/gapmesh-ios/tree/main" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
+          <a href={GITHUB_IOS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
             GitHub (iOS)
           </a>
-          <a href="https://github.com/darabo/gap-android-main" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
+          <a href={GITHUB_ANDROID_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors link-hover">
             GitHub (Android)
           </a>
         </div>

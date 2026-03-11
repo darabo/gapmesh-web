@@ -5,3 +5,6 @@ export const ANDROID_BETA_URL = "https://groups.google.com/g/gap-mesh-android";
 export const GITHUB_IOS_URL = "https://github.com/darabo/gapmesh-ios/tree/main";
 export const GITHUB_ANDROID_URL = "https://github.com/darabo/gap-android-main";
 export const APK_RELEASE_URL = "https://github.com/darabo/gap-android/releases";
+export const USER_GUIDE_EN_URL = "https://github.com/darabo/gapmesh-ios/blob/main/docs/USER_GUIDE_EN.md";
+export const USER_GUIDE_FA_URL = "https://github.com/darabo/gapmesh-ios/blob/main/docs/USER_GUIDE_FA.md";
+export const SUPPORT_EMAIL = "hello@gapmesh.com";
