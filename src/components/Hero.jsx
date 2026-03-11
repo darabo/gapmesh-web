@@ -94,6 +94,9 @@ export default function Hero() {
               <img 
                 src="/images/GetItOnGooglePlay_Badge_Web_color_English.svg" 
                 alt="Get it on Google Play" 
+                width="150"
+                height="50"
+                decoding="async"
                 className="h-full w-auto"
               />
             </a>
