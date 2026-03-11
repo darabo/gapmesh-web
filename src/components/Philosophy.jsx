@@ -60,7 +60,7 @@ export default function Philosophy() {
 
   return (
     // 'bg-primary-dark overflow-hidden' ensures a solid dark background color and confines background textures
-    <section ref={sectionRef} className="relative w-full py-24 md:py-48 bg-primary-dark overflow-hidden text-white flex items-center justify-center">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-32 bg-primary-dark overflow-hidden text-white flex items-center justify-center">
       {/* Background texture fetching an image from Unsplash, set to 10% opacity behind the text */}
       <div
         className="absolute inset-0 z-0 opacity-10 bg-cover bg-center select-none"

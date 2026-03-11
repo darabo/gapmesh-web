@@ -13,7 +13,6 @@ export default function Downloads() {
     { icon: <Apple size={24} />, text: t('downloads.app_store'), href: "https://apps.apple.com/us/app/gap-mesh/id6757211522", accent: true, disabled: false },
     { icon: <FlaskConical size={24} />, text: t('downloads.testflight'), href: "https://testflight.apple.com/join/Vgbv1MTy", accent: false, disabled: false },
     { icon: <Smartphone size={24} />, text: t('downloads.android_beta'), href: "https://groups.google.com/g/gap-mesh-android", accent: false, disabled: false },
-    { icon: <Play size={24} />, text: t('downloads.google_play'), href: "#", accent: false, disabled: true },
     { icon: <Code2 size={24} />, text: t('downloads.github_ios'), href: "https://github.com/darabo/gapmesh-ios/tree/main", accent: false, disabled: false },
     { icon: <Code2 size={24} />, text: t('downloads.github_android'), href: "https://github.com/darabo/gap-android-main", accent: false, disabled: false },
     { icon: <DownloadCloud size={24} />, text: t('downloads.apk'), href: "https://github.com/darabo/gap-android/releases", accent: false, disabled: false },
@@ -21,7 +20,7 @@ export default function Downloads() {
 
   return (
     // 'id="download"' acts as an anchor target for links (e.g. href="#download") from the Navbar and Hero
-    <section id="download" className="py-32 px-6 w-full max-w-5xl mx-auto text-center relative z-20">
+    <section id="download" className="py-16 md:py-20 px-6 w-full max-w-5xl mx-auto text-center relative z-20">
       <h2 className="font-sans font-bold text-4xl md:text-5xl text-text-light dark:text-text-dark mb-16">
         {t('downloads.title')}
       </h2>
@@ -51,6 +50,22 @@ export default function Downloads() {
             loading="lazy"
             decoding="async"
             className="h-full hidden dark:block"
+          />
+        </a>
+
+        {/* Google Play Store Badge */}
+        <a 
+          href="https://play.google.com/store/apps/details?id=com.gapmesh.droid" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="magnetic-btn inline-block h-[40px] md:h-[50px]"
+        >
+          <img 
+            src="/images/GetItOnGooglePlay_Badge_Web_color_English.svg" 
+            alt="Get it on Google Play" 
+            loading="lazy"
+            decoding="async"
+            className="h-full"
           />
         </a>
 

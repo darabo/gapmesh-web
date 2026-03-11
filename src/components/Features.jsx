@@ -196,7 +196,7 @@ export default function Features() {
 
   return (
     // 'max-w-7xl mx-auto' centers the section on large screens and prevents it from getting too wide
-    <section id="features" ref={sectionRef} className="py-24 px-6 relative w-full max-w-7xl mx-auto">
+    <section id="features" ref={sectionRef} className="py-16 md:py-20 px-6 relative w-full max-w-7xl mx-auto">
       {/* CSS Grid creates a responsive layout: 1 column on mobile, 3 columns on medium (md:) screens & above */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="feature-card">
