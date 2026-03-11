@@ -1,21 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 // Import specific SVG icons for each download platform
-import { Apple, Play, Code2, DownloadCloud, FlaskConical, Smartphone } from 'lucide-react';
+import { Apple, Code2, DownloadCloud, FlaskConical, Smartphone } from 'lucide-react';
 
 export default function Downloads() {
   const { t } = useTranslation();
 
   // Array configuring all available download links.
   // Each link has an icon, localized text, URL, and an 'accent' flag for primary styling.
-  // 'disabled' flag allows showing a button that isn't clickable yet (e.g. Google Play).
   const links = [
-    { icon: <Apple size={24} />, text: t('downloads.app_store'), href: "https://apps.apple.com/us/app/gap-mesh/id6757211522", accent: true, disabled: false },
-    { icon: <FlaskConical size={24} />, text: t('downloads.testflight'), href: "https://testflight.apple.com/join/Vgbv1MTy", accent: false, disabled: false },
-    { icon: <Smartphone size={24} />, text: t('downloads.android_beta'), href: "https://groups.google.com/g/gap-mesh-android", accent: false, disabled: false },
-    { icon: <Code2 size={24} />, text: t('downloads.github_ios'), href: "https://github.com/darabo/gapmesh-ios/tree/main", accent: false, disabled: false },
-    { icon: <Code2 size={24} />, text: t('downloads.github_android'), href: "https://github.com/darabo/gap-android-main", accent: false, disabled: false },
-    { icon: <DownloadCloud size={24} />, text: t('downloads.apk'), href: "https://github.com/darabo/gap-android/releases", accent: false, disabled: false },
+    { icon: <Apple size={24} />, text: t('downloads.app_store'), href: "https://apps.apple.com/us/app/gap-mesh/id6757211522", accent: true },
+    { icon: <FlaskConical size={24} />, text: t('downloads.testflight'), href: "https://testflight.apple.com/join/Vgbv1MTy", accent: false },
+    { icon: <Smartphone size={24} />, text: t('downloads.android_beta'), href: "https://groups.google.com/g/gap-mesh-android", accent: false },
+    { icon: <Code2 size={24} />, text: t('downloads.github_ios'), href: "https://github.com/darabo/gapmesh-ios/tree/main", accent: false },
+    { icon: <Code2 size={24} />, text: t('downloads.github_android'), href: "https://github.com/darabo/gap-android-main", accent: false },
+    { icon: <DownloadCloud size={24} />, text: t('downloads.apk'), href: "https://github.com/darabo/gap-android/releases", accent: false },
   ];
 
   return (
@@ -73,19 +72,6 @@ export default function Downloads() {
         {links.map((link, idx) => {
           // Skip the first Apple Store link from the array entirely, because we rendered the custom badge for it above
           if (link.href === "https://apps.apple.com/us/app/gap-mesh/id6757211522") return null;
-          
-          // Render a disabled "Coming Soon" button style
-          if (link.disabled) {
-            return (
-              <div
-                key={idx}
-                className="flex items-center justify-center gap-3 px-8 py-5 rounded-3xl font-sans font-semibold text-[15px] border border-black/5 dark:border-white/5 bg-black/5 dark:bg-white/5 text-text-light/40 dark:text-text-dark/40 cursor-not-allowed shadow-none h-[40px] md:h-[50px]"
-              >
-                {link.icon}
-                {link.text}
-              </div>
-            );
-          }
           
           // Render an active button
           return (
