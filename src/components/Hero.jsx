@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useResponsiveImageUrl } from '../hooks/useResponsiveImageUrl';
+import { APP_STORE_URL, PLAY_STORE_URL } from '../constants';
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
@@ -62,7 +63,7 @@ export default function Hero() {
           >
             {/* The primary call-to-action is the App Store Link badge */}
             <a 
-              href="https://apps.apple.com/us/app/gap-mesh/id6757211522" 
+              href={APP_STORE_URL} 
               target="_blank" 
               rel="noopener noreferrer"
               className="magnetic-btn inline-block h-[50px] md:h-[60px]"
@@ -86,7 +87,7 @@ export default function Hero() {
 
             {/* Google Play Store Badge */}
             <a 
-              href="https://play.google.com/store/apps/details?id=com.gapmesh.droid" 
+              href={PLAY_STORE_URL} 
               target="_blank" 
               rel="noopener noreferrer"
               className="magnetic-btn inline-block h-[50px] md:h-[60px]"
@@ -94,7 +95,7 @@ export default function Hero() {
               <img 
                 src="/images/GetItOnGooglePlay_Badge_Web_color_English.svg" 
                 alt="Get it on Google Play" 
-                width="150"
+                width="169"
                 height="50"
                 decoding="async"
                 className="h-full w-auto"
