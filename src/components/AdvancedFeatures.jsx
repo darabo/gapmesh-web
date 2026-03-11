@@ -38,7 +38,7 @@ export default function AdvancedFeatures() {
   ];
 
   return (
-    <section className="py-32 px-6 w-full max-w-6xl mx-auto relative z-20">
+    <section className="py-16 md:py-20 px-6 w-full max-w-6xl mx-auto relative z-20">
       {/* Header text container */}
       <div className="text-center mb-20 md:mb-28">
         <h2 className="font-sans font-bold text-4xl md:text-5xl text-text-light dark:text-text-dark mb-6 tracking-tight">

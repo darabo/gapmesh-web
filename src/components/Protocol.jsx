@@ -117,7 +117,7 @@ export default function Protocol() {
   ];
 
   return (
-    <section id="protocol" ref={containerRef} className="w-full bg-background-light dark:bg-background-dark py-24">
+    <section id="protocol" ref={containerRef} className="w-full bg-background-light dark:bg-background-dark py-16 md:py-20">
       {steps.map((step, idx) => (
         // The container holding the card needs 'sticky top-0' and 'h-[100vh]' to assist ScrollTrigger's pinning calculation.
         <div 

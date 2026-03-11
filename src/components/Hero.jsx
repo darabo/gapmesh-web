@@ -31,7 +31,7 @@ export default function Hero() {
 
       {/* Content wrapper: Contains the title, text, and buttons */}
       {/* Pushed to the bottom-left third by setting parent flex alignment, margin-auto limit, and padding. */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pb-16 sm:pb-24 md:pb-32 pt-28 sm:pt-32 flex flex-col justify-end">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pb-12 sm:pb-16 md:pb-20 pt-24 sm:pt-28 flex flex-col justify-end">
         <div key={i18n.language} className="max-w-3xl">
           <h1 className="flex flex-col gap-2">
             {/* The 't()' function from useTranslation pulls strings from i18n.js setup */}
@@ -81,6 +81,20 @@ export default function Hero() {
                 width="150"
                 height="50"
                 className="h-full w-auto hidden dark:block"
+              />
+            </a>
+
+            {/* Google Play Store Badge */}
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.gapmesh.droid" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="magnetic-btn inline-block h-[50px] md:h-[60px]"
+            >
+              <img 
+                src="/images/GetItOnGooglePlay_Badge_Web_color_English.svg" 
+                alt="Get it on Google Play" 
+                className="h-full w-auto"
               />
             </a>
             

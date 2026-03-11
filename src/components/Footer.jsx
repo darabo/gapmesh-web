@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     // The footer has a rounded top edge (rounded-t-[4rem]) and a top shadow to separate it from content above
-    <footer className="w-full bg-primary-dark text-white rounded-t-[4rem] px-8 py-16 md:py-24 mt-20 relative z-20 border-t border-white/5 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+    <footer className="w-full bg-primary-dark text-white rounded-t-[4rem] px-8 py-12 md:py-16 mt-12 relative z-20 border-t border-white/5 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
         
         {/* Left column: Brand Identity & Contact Info */}
